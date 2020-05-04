@@ -15,7 +15,7 @@
 
     <header>
       <div class="left">
-        <p>PEM 2,589.50</p>
+        <p id="totalTransactions">PEM 2,589.50</p>
         <span>Available Balance</span>
       </div>
       <div class="right">
@@ -29,14 +29,14 @@
         <a href="">See all</a>
       </div>
       <div class="mainNavegation">
-        <div class="navItem active">
+        <div class="navItem active" id="all">
           <p>All</p>
         </div>
-        <div class="navItem">
+        <div class="navItem" id="income">
           <img src="./assets/arrow-down.svg" alt="income" class="expense">
           <p>Income</p>
         </div>
-        <div class="navItem">
+        <div class="navItem" id="expense">
           <img src="./assets/arrow-up.svg" alt="expense" class="expense">
           <p>Expense</p>
         </div>
@@ -46,34 +46,15 @@
       </h3>
       <div class="listOfTransactions" id="listTransactions">
         
-        <div class="transaction">
-          <div class="transactionLeft">
-            <p>Transport</p>
-            <span>UBER Pool</span>
-          </div>
-          <div class="transactionRight">
-            <p class="income">+ PEM 50.68</p>
-            <span>Aug 26</span>
-          </div>
-        </div>
-
-        <div class="transaction">
-          <div class="transactionLeft">
-            <p>Transport</p>
-            <span>UBER Pool</span>
-          </div>
-          <div class="transactionRight">
-            <p class="expense">- PEM 50.68</p>
-            <span>Aug 26</span>
-          </div>
-        </div>
+      
+        
 
         
       </div>
     </main>
 
     <button type="button" id="addNewTransaction">
-        <img src="./assets//plus.svg" alt="plus-add">
+        <img src="./assets/plus.svg" alt="plus-add">
     </button>
 
     <div class="addNewTransaction" id="popUpNewTransaction">
