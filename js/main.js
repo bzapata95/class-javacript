@@ -203,7 +203,7 @@ income.addEventListener('click', () => {
   const incomes = JSON.parse(transactionsLocalS).filter(transaction => transaction.type === 'income');
 
   state.incomes = [...incomes];
-  getTransactions('Income');
+  getTransactions('income');
 });
 
 expense.addEventListener('click', () => {
