@@ -65,12 +65,13 @@ function cleanInputs(){
 
 const formNewTransaction = document.querySelector("#formNewTransaction");
 
-
-
-
-
 formNewTransaction.addEventListener('submit', (event) => {
   event.preventDefault();
+
+  if(!title.value.trim()|| !description.value.trim()|| !value.value.trim()|| !state.type){
+    alert('llene los campos o selecciones type de operacion');
+    return;
+  }
   
   const data = {
     title: title.value,
@@ -89,6 +90,7 @@ formNewTransaction.addEventListener('submit', (event) => {
   showPopUp();
   getTransactions();
   getTotal();
+  state.type = '';
 });
 
 const listTransactions = document.querySelector("#listTransactions");
@@ -97,56 +99,39 @@ function getTransactions(type){
   listTransactions.innerHTML = '';
   switch (type) {
     case 'income':
-      state.incomes.map(transaction => {
-        listTransactions.innerHTML +=`
-          <div class="transaction">
-            <div class="transactionLeft">
-              <p>${transaction.title}</p>
-              <span>${transaction.description}</span>
-            </div>
-            <div class="transactionRight">
-              <p class="${transaction.type === 'income' ? 'income' : 'expense'}">${formatValue(transaction.value)}</p>
-              <span>26 April</span>
-            </div>
-          </div>
-        `;
-      })
+      generatedHTML(state.incomes);
       break;
       case 'expense':
-      state.expenses.map(transaction => {
-        listTransactions.innerHTML +=`
-          <div class="transaction">
-            <div class="transactionLeft">
-              <p>${transaction.title}</p>
-              <span>${transaction.description}</span>
-            </div>
-            <div class="transactionRight">
-              <p class="${transaction.type === 'income' ? 'income' : 'expense'}">${formatValue(transaction.value)}</p>
-              <span>26 April</span>
-            </div>
-          </div>
-        `;
-      })
+        generatedHTML(state.expenses);
       break;
   
     default:
-      state.transactions.map(transaction => {
-        listTransactions.innerHTML +=`
-          <div class="transaction">
-            <div class="transactionLeft">
-              <p>${transaction.title}</p>
-              <span>${transaction.description}</span>
-            </div>
-            <div class="transactionRight">
-              <p class="${transaction.type === 'income' ? 'income' : 'expense'}">${formatValue(transaction.value)}</p>
-              <span>26 April</span>
-            </div>
-          </div>
-        `;
-      })
+      generatedHTML(state.transactions);
       break;
   }
   
+}
+
+function formatDate(value){
+  const date = new Date(value)
+  return new Intl.DateTimeFormat('es-PE', { year: 'numeric', month: 'short', day: '2-digit' }).format(date)
+}
+
+function generatedHTML(array){
+  return array.map(item => {
+    listTransactions.innerHTML +=`
+      <div class="transaction">
+        <div class="transactionLeft">
+          <p>${item.title}</p>
+          <span>${item.description}</span>
+        </div>
+        <div class="transactionRight">
+          <p class="${item.type === 'income' ? 'income' : 'expense'}">${formatValue(item.value)}</p>
+          <span>${formatDate(item.date)}</span>
+        </div>
+      </div>
+    `;
+  })
 }
 
 const totalTransactions = document.querySelector('#totalTransactions');
@@ -190,8 +175,19 @@ function formatValue(value){
 const all = document.querySelector("#all");
 const income = document.querySelector("#income");
 const expense = document.querySelector("#expense");
+const listTitle = document.querySelector("#listTitle");
+
+function destroySelectedNav() {
+  all.classList.remove('active');
+  income.classList.remove('active');
+  expense.classList.remove('active');
+  listTitle.innerHTML='';
+}
 
 all.addEventListener('click', () => {
+  destroySelectedNav();
+  all.classList.add('active');
+  listTitle.innerHTML='All';
   const transactionsLocalS = localStorage.getItem('@Project:transactions');
   if(transactionsLocalS){
     state.transactions = JSON.parse(transactionsLocalS);
@@ -200,17 +196,23 @@ all.addEventListener('click', () => {
 });
 
 income.addEventListener('click', () => {
+  destroySelectedNav();
+  income.classList.add('active');
+  listTitle.innerHTML='Income';
   const transactionsLocalS = localStorage.getItem('@Project:transactions');
   const incomes = JSON.parse(transactionsLocalS).filter(transaction => transaction.type === 'income');
 
   state.incomes = [...incomes];
-  getTransactions('income');
+  getTransactions('Income');
 });
 
 expense.addEventListener('click', () => {
+  destroySelectedNav();
+  expense.classList.add('active');
+  listTitle.innerHTML='Expense';
   const transactionsLocalS = localStorage.getItem('@Project:transactions');
-  const expense = JSON.parse(transactionsLocalS).filter(transaction => transaction.type === 'expense');
+  const expenses = JSON.parse(transactionsLocalS).filter(transaction => transaction.type === 'expense');
 
-  state.expenses = [...expense];
+  state.expenses = [...expenses];
   getTransactions('expense');
 });
