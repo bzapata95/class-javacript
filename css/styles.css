@@ -1,0 +1,321 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap');
+
+*{
+  margin:0;
+  padding: 0;
+  outline: none;
+  box-sizing: border-box;
+}
+
+html {
+  font-family: Poppins, sans-serif;
+}
+
+body {
+  background: #234F9D;
+  color: #fff;
+  position: relative;
+}
+
+.container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+}
+
+h1{
+  padding: 24px 24px 0 24px;
+  font-size: 16px;
+  text-transform: uppercase;
+  align-self: flex-start;
+  color: rgba(255, 255, 255, 0.6);
+
+  display: flex;
+  align-items: center;
+}
+
+header {
+  padding: 0 24px;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-top: 26px;
+}
+
+header div.left {
+  flex:1;
+}
+
+header div.left p{
+  font-size: 28px;
+  font-weight: 600;
+  margin-bottom: 4px;
+}
+header div.left span{
+  font-size: 16px;
+  *font-weight: bold;
+  color: rgba(255, 255, 255, 0.6);
+  letter-spacing: 1px;
+
+}
+
+header div.right {
+  width: 100px;
+  text-align: right;
+}
+
+header div.right img{
+  width: 50px;
+  height: 50px;
+  border: 3px solid #fff;
+  border-radius: 10px;
+}
+
+main {
+  margin-top: 24px;
+  width: 100%;
+  background: #F5F7FA;
+  border-radius: 20px 20px 0 0;
+  color: #113D6B;
+  padding: 24px;
+  flex: 1;
+}
+
+main .mainHeader {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 20px;
+}
+main .mainHeader h3{
+  font-size: 18px;
+  font-weight: 600;
+}
+
+main .mainHeader a{
+  font-size: 16px;
+  font-weight: 600;
+  text-decoration: none;
+  color: #204D9B;
+}
+
+main .mainNavegation {
+  display: flex;
+  align-items: center;
+  font-size: 14px;
+  font-weight: 600;
+  width: 100%;
+}
+
+main .mainNavegation .navItem {
+  display: flex;
+  align-items: center;
+  background: #FEFEFE;
+  padding: 5px 10px;
+  border-radius: 50px;
+  box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+  margin-right: 10px;
+  border: 2px solid #FEFEFE;
+
+  cursor: pointer;
+}
+
+main .mainNavegation .navItem.active{
+  border: 2px solid #113D6B;
+}
+
+main .mainNavegation .navItem img{
+  margin-right: 5px;
+}
+
+.listOfTransactions {
+  margin-top: 15px;
+}
+
+
+main h3{
+  color: #113D6B;
+  margin-bottom: 5px;
+  margin-top: 24px;
+}
+
+@keyframes appearTransaction {
+  from {
+    opacity: 0;
+    bottom:  -50px;
+  }
+  to {
+    opacity: 1;
+    bottom: 0px;
+}
+}
+
+.listOfTransactions .transaction{
+  background: #fff;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 14px 24px;
+  border-radius: 10px;
+  margin-bottom: 10px;
+  box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+
+}
+
+.transaction{
+  animation: appearTransaction 0.5s ease-in-out;
+}
+
+.listOfTransactions .transaction .transactionLeft p{
+  font-weight: 600;
+  font-size: 16px;
+  color: #113D6B
+}
+
+.listOfTransactions .transaction .transactionLeft span{
+  color: #64819F;
+  font-size: 14px;
+  font-weight: 600;
+}
+
+.listOfTransactions .transaction .transactionRight p.income{
+  color: #3AB480;
+  font-weight: 600;
+}
+.listOfTransactions .transaction .transactionRight span{
+  display: block;
+  font-size: 12px;
+  text-align: right;
+  color: #64819F;
+  font-weight: 600;
+}
+
+.listOfTransactions .transaction .transactionRight p.expense{
+  color: #c53030;
+  font-weight: 600;
+}
+
+button[type="button"] {
+  position: absolute;
+  bottom: 24px;
+  right: 24px;
+  width: 50px;
+  height: 50px;
+  background: #234F9D;
+  border-radius: 50%;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: none;
+  cursor: pointer;
+}
+
+@keyframes appearDownToUp {
+  from {
+    left:  -50px;
+    opacity: 0;
+  }
+  to {
+    left: 0px;
+  opacity: 1;
+}
+}
+
+.addNewTransaction{
+  position: absolute;
+  background-color: rgba(0, 0, 0, 0.5);
+  height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0 24px;
+  display: none;
+  animation: appearDownToUp 0.5s;
+
+}
+
+.addNewTransaction .containerNewTransaction{
+  background: #fff;
+  color: #113D6B;
+  padding: 24px;
+  border-radius: 20px;
+  position: relative;
+}
+
+.addNewTransaction .containerNewTransaction .closePopUp{
+  position: absolute;
+  top: -10px;
+  right: -1px;
+  background: #fff;
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 600;
+  color: #000;
+  box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.1);
+  cursor: pointer;
+
+  transition: background-color 0.2s ease-in-out;
+}
+
+.addNewTransaction .containerNewTransaction .closePopUp:hover{
+  background: rgba(255, 255, 255, 0.6);
+}
+
+.addNewTransaction .containerNewTransaction .newTransactionType{
+  display: flex;
+  align-items: center;
+  justify-content: space-around
+}
+
+.addNewTransaction .containerNewTransaction .newTransactionType .navItem{
+  display: flex;
+  align-items: center;
+  background: #F5F7FA;
+  padding: 10px 15px;
+  border-radius: 30px;
+  box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.1);
+  cursor: pointer;
+}
+
+.addNewTransaction .containerNewTransaction .newTransactionType .navItem img{
+  margin-right: 10px;
+}
+
+.addNewTransaction .containerNewTransaction .newTransactionType .navItem.selected{
+  background: #204D9B;
+  color: #fff
+}
+
+.addNewTransaction .containerNewTransaction form{
+  margin-top: 24px;
+  width: 100%;
+}
+
+.addNewTransaction .containerNewTransaction form input{
+  width: 100%;
+  padding: 10px 24px;
+  border: 1px solid #e6e6e6;
+  border-radius: 5px;
+  margin-bottom: 10px;
+  font-size: 14px;
+}
+
+.addNewTransaction .containerNewTransaction form button{
+  width: 100%;
+  padding: 15px;
+  border: none;
+  border-radius: 5px;
+  font-size: 14px;
+  font-weight: 600;
+  text-transform: uppercase;
+  color: #fff;
+  background: #3AB480; 
+}
