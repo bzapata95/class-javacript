@@ -101,8 +101,8 @@ function getTransactions(type){
     case 'income':
       generatedHTML(state.incomes);
       break;
-      case 'expense':
-        generatedHTML(state.expenses);
+    case 'expense':
+      generatedHTML(state.expenses);
       break;
   
     default:
