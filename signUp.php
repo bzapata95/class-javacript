@@ -1,22 +1,20 @@
 <?php
-
-include_once('classes/config/db.php');
+include_once('includes/config/db.php');
 include_once('classes/User.php');
 
+$newUser = new User($con);
+
 if(isset($_POST["buttonSubmit"])){
+
   $name= $_POST["name"];
   $code= $_POST["code"];
   $password= $_POST["password"];
   $password_confirm= $_POST["password_confirm"];
 
-
-  $newUser = new User($con);
-
   $result = $newUser->register($name, $code, $password, $password_confirm);
-
  
   if($result){
-    echo "listo";
+    header('Location: signIn.php');
   }else {
     echo ".l.";
   }
@@ -43,7 +41,7 @@ if(isset($_POST["buttonSubmit"])){
   
   <h2>Registro</h2>
   
-  <form action="signUp.php" method="post">
+  <form action="signUp.php" method="POST">
     <input name="name" type="text" placeholder="Nombre completo">
     <input name="code" type="text" placeholder="código">
     <input name="password" type="password" placeholder="Clave 6 digitos" >
@@ -51,6 +49,6 @@ if(isset($_POST["buttonSubmit"])){
     <button name="buttonSubmit" type="submit">Registrarme</button>
   </form>
 
-  <p>Ya tienes una cuenta? Inicia sesión <a href="signIn.html">Aquí</a></p>
+  <p>Ya tienes una cuenta? Inicia sesión <a href="signIn.php">Aquí</a></p>
 </body>
 </html>

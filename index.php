@@ -46,9 +46,6 @@
       </h3>
       <div class="listOfTransactions" id="listTransactions">
         
-      
-        
-
         
       </div>
     </main>

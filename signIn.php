@@ -1,5 +1,5 @@
 <?php
-include_once('classes/config/db.php');
+// include_once('classes/config/db.php');
 include_once('classes/User.php');
 
 
@@ -9,7 +9,7 @@ if(isset($_POST["buttonSubmit"])){
 
   $newUser = new User($con);
 
-  $result = $newUser->getValues($code, $password);
+  $result = $newUser->login($code, $password);
 
   echo $result;
 }
